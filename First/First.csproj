@@ -45,8 +45,7 @@
     <Compile Include="HealthBase.cs" />
     <Compile Include="Interfaces\IDamageable.cs" />
     <Compile Include="Interfaces\IHealth.cs" />
-    <Compile Include="Interfaces\IShootable.cs" />
-    <Compile Include="Interfaces\IWeapon.cs" />
+    <Compile Include="Interfaces\IShootableWeapon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHealth.cs" />
     <Compile Include="Weapon.cs" />

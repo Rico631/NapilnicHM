@@ -7,7 +7,7 @@ namespace First
         event Action OnDeath;
         void Damage(int count);
         void Heal(int count);
-
+        int CurrentHealth();
         bool IsAlive();
     }
 }

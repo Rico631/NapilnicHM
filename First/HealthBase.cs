@@ -27,6 +27,8 @@ namespace First
 
         public virtual event Action OnDeath;
 
+        public int CurrentHealth() => _health;
+
         public virtual void Damage(int count)
         {
             if (!_isDead)

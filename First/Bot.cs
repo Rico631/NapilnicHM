@@ -8,9 +8,9 @@ namespace First
 {
     public class Bot
     {
-        private readonly IWeapon _weapon;
+        private readonly IShootableWeapon _weapon;
 
-        public Bot(IWeapon weapon)
+        public Bot(IShootableWeapon weapon)
         {
             _weapon = weapon;
         }

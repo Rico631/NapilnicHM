@@ -1,9 +1,11 @@
 ﻿namespace First
 {
-    public interface IShootable
+    public interface IShootableWeapon
     {
 
         void Fire(IDamageable player);
-        bool CanShoot();
+        bool AmmoIsEmpty();
+
+
     }
 }

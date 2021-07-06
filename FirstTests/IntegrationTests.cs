@@ -20,17 +20,17 @@ namespace First.Tests
             var playerHealth = new PlayerHealth(100);
             Player = new Player(playerHealth);
 
-            var weapon = new Weapon(10, 5);
+            var weapon = new ShootableWeapon(10, 5);
             Bot = new Bot(weapon);
         }
 
         [Test()]
         public void RR()
         {
+            Bot.OnSeePlayer(Player);
 
 
-            
-            
+
 
 
         }
