@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace First
 {
-    public class Player : IDamageable
+    public class Player : IPlayer
     {
         private readonly IHealth _health;
 
@@ -21,5 +21,6 @@ namespace First
 
         public bool IsAlive() => _health.IsAlive();
 
+        public int GetCurrentHealth() => _health.CurrentHealth();
     }
 }

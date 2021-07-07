@@ -8,16 +8,16 @@ namespace First
 {
     public class Bot
     {
-        private readonly IShootableWeapon _weapon;
+        private readonly IWeapon _weapon;
 
-        public Bot(IShootableWeapon weapon)
+        public Bot(IWeapon weapon)
         {
             _weapon = weapon;
         }
 
-        public void OnSeePlayer(IDamageable damageable)
+        public void OnSeePlayer(IPlayer player)
         {
-            _weapon.Fire(damageable);
+            _weapon.GiveDamage(player);
         }
     }
 }

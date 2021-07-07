@@ -11,28 +11,66 @@ namespace First.Tests
     [TestFixture()]
     public class IntegrationTests
     {
-        public Player Player { get; set; }
-        public Bot Bot { get; set; }
-
-        [SetUp]
-        public void Setup()
+        [Test()]
+        public void Bot_Shooting_Five_Times_In_Player()
         {
             var playerHealth = new PlayerHealth(100);
-            Player = new Player(playerHealth);
+            IPlayer player = new Player(playerHealth);
 
             var weapon = new ShootableWeapon(10, 5);
-            Bot = new Bot(weapon);
+            var bot = new Bot(weapon);
+
+            
+            for(int i = 0; i <= 5; i++)
+            {
+                bot.OnSeePlayer(player);
+            }
+
+            Assert.AreEqual(50, player.GetCurrentHealth());
+            Assert.IsTrue(player.IsAlive());
+            Assert.AreEqual(0, weapon.Bullets);
+            Assert.IsFalse(weapon.CanShoot());
         }
 
         [Test()]
-        public void RR()
+        public void Bot_Shooting_Six_Times_In_Player()
         {
-            Bot.OnSeePlayer(Player);
+            var playerHealth = new PlayerHealth(100);
+            IPlayer player = new Player(playerHealth);
+
+            var weapon = new ShootableWeapon(10, 5);
+            var bot = new Bot(weapon);
 
 
+            for (int i = 0; i <= 6; i++)
+            {
+                bot.OnSeePlayer(player);
+            }
+
+            Assert.AreEqual(50, player.GetCurrentHealth());
+            Assert.IsTrue(player.IsAlive());
+            Assert.AreEqual(0, weapon.Bullets);
+            Assert.IsFalse(weapon.CanShoot());
+        }
+        [Test()]
+        public void Bot_Shooting_In_Player()
+        {
+            var playerHealth = new PlayerHealth(100);
+            IPlayer player = new Player(playerHealth);
+
+            var weapon = new ShootableWeapon(150, 5);
+            var bot = new Bot(weapon);
 
 
+            for (int i = 0; i < 3; i++)
+            {
+                bot.OnSeePlayer(player);
+            }
 
+            Assert.AreEqual(0, player.GetCurrentHealth());
+            Assert.IsFalse(player.IsAlive());
+            Assert.AreEqual(2, weapon.Bullets);
+            Assert.IsTrue(weapon.CanShoot());
         }
     }
 }

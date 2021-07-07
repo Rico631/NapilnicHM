@@ -25,33 +25,43 @@ namespace First
             _isDead = false;
         }
 
-        public virtual event Action OnDeath;
+        public virtual event Action OnDiedEvent;
+        public virtual event Action OnDieingEvent;
 
         public int CurrentHealth() => _health;
 
-        public virtual void Damage(int count)
+        public void Damage(int damage)
         {
             if (!_isDead)
             {
-                if (_health - count < 0)
+                if (_health - AffectDamage(damage) < 0)
                 {
                     _health = 0;
                     _isDead = true;
-                    OnDeath?.Invoke();
+                    OnDieingEvent?.Invoke();
+                    Death();
+                    OnDiedEvent?.Invoke();
+                    
                 }
                 else
-                    _health -= count;
+                    _health -= AffectDamage(damage);
             }
         }
 
-        public virtual void Heal(int count)
+        public void Heal(int heal)
         {
-            if (_health + count > _maxHealth)
+            if (_health + heal > _maxHealth)
                 _health = _maxHealth;
             else
-                _health += count;
+                _health += heal;
         }
 
-        public virtual bool IsAlive() => _health > 0;
+        public bool IsAlive() => _health > 0;
+
+        protected virtual int AffectDamage(int damage)
+        {
+            return damage;
+        }
+        protected abstract void Death();
     }
 }

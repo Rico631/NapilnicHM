@@ -4,10 +4,12 @@ namespace First
 {
     public interface IHealth
     {
-        event Action OnDeath;
+        event Action OnDiedEvent;
+
+        int CurrentHealth();
         void Damage(int count);
         void Heal(int count);
-        int CurrentHealth();
+
         bool IsAlive();
     }
 }

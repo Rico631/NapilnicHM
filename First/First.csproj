@@ -42,15 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
-    <Compile Include="HealthBase.cs" />
+    <Compile Include="Health\HealthBase.cs" />
+    <Compile Include="Health\PlayerHealth.cs" />
     <Compile Include="Interfaces\IDamageable.cs" />
     <Compile Include="Interfaces\IHealth.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IShootableWeapon.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerHealth.cs" />
-    <Compile Include="Weapon.cs" />
+    <Compile Include="Interfaces\IWeapon.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeaponBase.cs" />
+    <Compile Include="Weapon\ShootableWeapon.cs" />
+    <Compile Include="Weapon\ShootableWeaponBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,9 @@ namespace First
         {
         }
 
-        public override event Action OnDeath = () => Console.WriteLine("I'm Dead");
+        protected override void Death()
+        {
+            Console.WriteLine("I'm Dead");
+        }
     }
 }
