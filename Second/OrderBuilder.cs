@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Second
 {
-    public class OrderBuilder
+    public class OrderBuilder : IComparable<OrderBuilder>
     {
         private readonly Customer _customer;
         //private readonly IProductService _productService;
@@ -24,7 +24,10 @@ namespace Second
             _warehouseService = warehouseService;
             _orderService = orderService;
 
-            Order = _orderService.CreateEmptyOrder(customer);
+            Order = _orderService.GetOrderByCustomer(_customer);
+
+            if (Order == null)
+                Order = _orderService.CreateEmptyOrder(customer);
         }
 
         public void AddProduct(Product product, int quantity)
@@ -42,9 +45,9 @@ namespace Second
             var orderDetail = Order.OrderDetails.First(x => x.ProductID == product.ID);
             if (orderDetail.Quantity == quantity)
                 return;
-            
+
             orderDetail.Quantity = quantity;
-            
+
             _warehouseService.UpdateReservingQuantity(orderDetail.ReserveStockID, quantity);
             _orderService.UpdateOrderDetailQuantity(orderDetail, quantity);
         }
@@ -70,6 +73,19 @@ namespace Second
             _orderService.UpdateOrder(Order);
         }
 
+        public int CompareTo(OrderBuilder other)
+        {
+            if (_customer.ID == other._customer.ID && Order.ID == other.Order.ID)
+                return 0;
 
+            return _customer.ID.CompareTo(other._customer.ID);
+
+
+
+            //if (_customer == other._customer)
+            //    return 1;
+            //else
+            //    return -1;
+        }
     }
 }

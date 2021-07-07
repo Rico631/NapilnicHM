@@ -146,6 +146,15 @@ namespace Second.Tests
             Assert.AreEqual(2, stock2.ReserveStocks.Count());
         }
 
+        [Test()]
+        [Order(8)]
+        public void Secondary_Create_OrderBuilder1_And_Compare_With_Original_OrderBuilder1()
+        {
+            var customer = Context.Customers.First();
+            var orderBuilder = new OrderBuilder(customer, WarehouseService, OrderService);
+            Assert.AreEqual(0, OrderBuilder1.CompareTo(orderBuilder));
+        }
+
         private void CreateContext()
         {
             var options = new DbContextOptionsBuilder<ShopContext>()

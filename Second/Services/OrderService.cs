@@ -27,6 +27,11 @@ namespace Second.Services
             return order;
         }
 
+        public Order GetOrderByCustomer(Customer customer)
+        {
+            return _context.Orders.FirstOrDefault(x => x.CustomerID == customer.ID);
+        }
+
         public void UpdateOrder(Order order)
         {
             _context.Update(order);
